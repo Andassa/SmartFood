@@ -6,7 +6,7 @@
 
 /**
  *
- * @author Mahery
+ * @author Andassa
  */
 package com.mycompany.smartfood.controlleur;
 
