@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.Application;
 
 /**
  *
- * @author Mahery
+ * @author Andassa
  */
 @ApplicationPath("api")
 public class ApplicationRest extends Application {
