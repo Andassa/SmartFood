@@ -10,6 +10,8 @@
         <class>com.mycompany.smartfood.entity.MealPlan</class>
         <class>com.mycompany.smartfood.entity.Recipe</class>
         <class>com.mycompany.smartfood.entity.ShoppingItemEntity</class>
+        <class>com.mycompany.smartfood.entity.RecipeComponent</class>
+        <class>com.mycompany.smartfood.entity.WasteEntry</class>
         <properties>
             <!-- Création automatique drop-and-create -->
             <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
