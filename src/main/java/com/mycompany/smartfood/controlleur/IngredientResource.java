@@ -6,7 +6,7 @@ package com.mycompany.smartfood.controlleur;
 
 /**
  *
- * @author Mahery
+ * @author Andassa
  */
 import com.mycompany.smartfood.service.IngredientService;
 import com.mycompany.smartfood.entity.Ingredient;
