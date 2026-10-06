@@ -1,0 +1,5 @@
+module add --name=org.postgresql --resources=/opt/jboss/wildfly/postgresql-42.7.13.jar --dependencies=java.xml,jakarta.transaction.api
+embed-server --std-out=echo --server-config=standalone.xml
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql,driver-module-name=org.postgresql,driver-class-name=org.postgresql.Driver,driver-xa-datasource-class-name=org.postgresql.xa.PGXADataSource)
+data-source add --name=PostgresDS --jndi-name=java:/PostgresDS --driver-name=postgresql --connection-url=jdbc:postgresql://\${env.POSTGRES_HOST}:\${env.POSTGRES_PORT}/\${env.POSTGRES_DB} --user-name=\${env.POSTGRES_USER} --password=\${env.POSTGRES_PASSWORD} --enabled=true --jta=true --use-ccm=true --validate-on-match=true --background-validation=false --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
+stop-embedded-server
