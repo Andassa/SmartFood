@@ -6,7 +6,7 @@ package com.mycompany.smartfood.dto;
 
 /**
  *
- * @author Mahery
+ * @author Andassa
  */
 public class ShoppingItem {
     private String name;
