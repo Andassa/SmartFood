@@ -34,6 +34,10 @@ public class Recipe {
 
     private int prepTime;
     private int cookTime;
+    private int servings = 1;
+
+    @jakarta.persistence.OneToMany(mappedBy = "recipe", cascade = jakarta.persistence.CascadeType.ALL, orphanRemoval = true, fetch = jakarta.persistence.FetchType.EAGER)
+    private java.util.List<RecipeComponent> lines = new java.util.ArrayList<>();
 
     public Recipe() { }
 
@@ -103,5 +107,21 @@ public class Recipe {
 
     public void setCookTime(int cookTime) {
         this.cookTime = cookTime;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+
+    public void setServings(int servings) {
+        this.servings = servings;
+    }
+
+    public java.util.List<RecipeComponent> getLines() {
+        return lines;
+    }
+
+    public void setLines(java.util.List<RecipeComponent> lines) {
+        this.lines = lines;
     }
 }
