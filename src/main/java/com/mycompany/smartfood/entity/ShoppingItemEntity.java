@@ -6,7 +6,7 @@ package com.mycompany.smartfood.entity;
 
 /**
  *
- * @author Mahery
+ * @author Andassa
  */
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +29,7 @@ public class ShoppingItemEntity {
     private String unit;
     
     private boolean checked;
+    private boolean fromPlan;
 
     public ShoppingItemEntity() { }
 
@@ -79,5 +80,13 @@ public class ShoppingItemEntity {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public boolean isFromPlan() {
+        return fromPlan;
+    }
+
+    public void setFromPlan(boolean fromPlan) {
+        this.fromPlan = fromPlan;
     }
 }
