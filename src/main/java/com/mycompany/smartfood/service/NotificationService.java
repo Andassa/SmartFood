@@ -6,11 +6,12 @@
 
 /**
  *
- * @author Mahery
+ * @author Andassa
  */
 package com.mycompany.smartfood.service;
 
 import com.mycompany.smartfood.entity.Ingredient;
+import jakarta.ejb.EJB;
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
@@ -26,25 +27,24 @@ public class NotificationService {
     @PersistenceContext(unitName = "my_persistence_unit")
     private EntityManager em;
 
-    // Exécution quotidienne par défaut à 8h00 avec un seuil de 2 jours
+    @EJB
+    private KitchenService kitchenService;
+
     @Schedule(hour = "8", minute = "0", second = "0", persistent = false)
     public void checkExpiringIngredients() {
-         int defaultDays = 2;
-         LocalDate threshold = LocalDate.now().plusDays(defaultDays);
-         List<Ingredient> expiring = em.createQuery(
-             "SELECT i FROM Ingredient i WHERE i.expirationDate <= :threshold", Ingredient.class)
-             .setParameter("threshold", threshold)
-             .getResultList();
-         if (!expiring.isEmpty()){
-             System.out.println("Ingrédients proches de la péremption : " + expiring);
-         }
+        int removed = kitchenService.sweepExpired();
+        if (removed > 0) {
+            System.out.println("Ingrédients périmés archivés : " + removed);
+        }
     }
-    
+
     public List<Ingredient> getExpiringIngredients(int days) {
-         LocalDate threshold = LocalDate.now().plusDays(days);
-         return em.createQuery(
-             "SELECT i FROM Ingredient i WHERE i.expirationDate <= :threshold", Ingredient.class)
-             .setParameter("threshold", threshold)
-             .getResultList();
+        int window = Math.min(Math.max(days, 1), 30);
+        LocalDate threshold = LocalDate.now().plusDays(window);
+        return em.createQuery(
+                "SELECT i FROM Ingredient i WHERE i.expirationDate <= :threshold ORDER BY i.expirationDate",
+                Ingredient.class)
+                .setParameter("threshold", threshold)
+                .getResultList();
     }
 }
