@@ -6,7 +6,7 @@ package com.mycompany.smartfood.entity;
 
 /**
  *
- * @author Mahery
+ * @author Andassa
  */
 
 import java.time.LocalDate;
@@ -26,8 +26,9 @@ public class Ingredient {
     
     private String name;
     private int quantity;
-    private String unit; 
+    private String unit;
     private LocalDate expirationDate;
+    private String barcode;
 
     public Ingredient() { }
 
@@ -77,5 +78,13 @@ public class Ingredient {
 
     public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 }
