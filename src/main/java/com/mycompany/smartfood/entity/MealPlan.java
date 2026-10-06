@@ -6,7 +6,7 @@ package com.mycompany.smartfood.entity;
 
 /**
  *
- * @author Mahery
+ * @author Andassa
  */
 
 import jakarta.persistence.Entity;
@@ -22,8 +22,9 @@ public class MealPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String date; // Format "YYYY-MM-DD"
-    private Long recipeId; // Référence à une recette
+    private String date;
+    private Long recipeId;
+    private int servings;
 
     public MealPlan() { }
 
@@ -55,5 +56,13 @@ public class MealPlan {
 
     public void setRecipeId(Long recipeId) {
         this.recipeId = recipeId;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+
+    public void setServings(int servings) {
+        this.servings = servings;
     }
 }
